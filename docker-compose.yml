@@ -11,3 +11,7 @@ services:
     restart: always
     networks:
       - homelab_net
+
+networks:
+  homelab_net:
+    external: true
