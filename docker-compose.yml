@@ -9,3 +9,5 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/certs:/etc/nginx/certs:ro
     restart: always
+    networks:
+      - homelab_net
