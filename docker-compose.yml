@@ -12,6 +12,24 @@ services:
     networks:
       - homelab_net
 
+  home-assistant:
+    container_name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    restart: always
+    volumes:
+      - ./config:/config
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - TZ=America/Argentina/Buenos_Aires
+    # Si necesitas descubrimiento automático de dispositivos (mDNS/DLNA),
+    # usa 'network_mode: host' en lugar de la red bridge.
+    networks:
+      - homelab_net
+    ports:
+      - "8123:8123"
+    # Privileged es útil si vas a conectar dongles USB (Zigbee/Bluetooth)
+    privileged: true
+
 networks:
   homelab_net:
     external: true
